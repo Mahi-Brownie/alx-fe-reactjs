@@ -1,0 +1,25 @@
+import { useState } from "react";
+
+function SearchBar({ onSearch }) {
+    const [query, setQuery] = useState("");
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (!query.trim()) return;
+        onSearch(query);
+        setQuery("");
+    };
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <input
+                placeholder="Search GitHub username..."
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+            />
+            <button type="submit">Search</button>
+        </form>
+    );
+}
+
+export default SearchBar;
